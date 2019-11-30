@@ -1,0 +1,22 @@
+# simple.gocd.yaml
+pipelines:
+  cleaning:
+    group: cooking
+    materials:
+      mygit:
+        git: https://github.com/torczuk/gocd-playground
+    stages:
+      - build:
+          jobs:
+            build:
+              elastic_profile_id: "demo-app"
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c
+                      - echo 'cleanning in progress'
+              artifacts:
+                - build:
+                    source: "cleaning.txt"
+                    destination: cleaning_service
